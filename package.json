@@ -1,6 +1,6 @@
 {
   "name": "@equinix-labs/docusaurus-plugin-localizejs",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Docusaurus plugin for adding Localize to all pages",
   "main": "src/index.js",
   "scripts": {

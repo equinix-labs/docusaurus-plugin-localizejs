@@ -12,6 +12,7 @@ export default async function localizeJs(
     },
 
     injectHtmlTags() {
+      const localizeConfig = Object.assign({}, options.settings, { key: options.key });
       return {
         headTags: [
           {
@@ -27,10 +28,7 @@ export default async function localizeJs(
           {
             tagName: 'script',
             innerHTML: `
-              Localize.initialize({
-                key: '${options.key}',
-                rememberLanguage: true,
-              });
+              Localize.initialize(${JSON.stringify(localizeConfig)});
             `,
           },
         ],
@@ -41,6 +39,7 @@ export default async function localizeJs(
 
 const optionsSchema = Joi.object({
   key: Joi.string().required(),
+  settings: Joi.object()
 });
 
 export function validateOptions({ options, validate }) {
