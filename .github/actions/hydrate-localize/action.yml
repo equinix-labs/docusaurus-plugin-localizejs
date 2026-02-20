@@ -8,6 +8,10 @@ inputs:
     description: 'Path to the sitemap file relative to the base URL'
     required: false
     default: 'sitemap.xml'
+  skip_path_prefixes:
+    description: 'Comma-separated list of URL path prefixes for which Localize is disabled and should not be waited on'
+    required: false
+    default: 'api-catalog'
 runs:
   using: "composite"
   steps:
@@ -20,7 +24,7 @@ runs:
       shell: bash
 
     - name: Run crawler script
-      run: node ${{ github.action_path }}/index.js ${{ inputs.target_base_url }} ${{ inputs.sitemap_path }}
+      run: node ${{ github.action_path }}/index.js ${{ inputs.target_base_url }} ${{ inputs.sitemap_path }} "${{ inputs.skip_path_prefixes }}"
       shell: bash
       env:
         CRAWLEE_MEMORY_MBYTES: 8000
