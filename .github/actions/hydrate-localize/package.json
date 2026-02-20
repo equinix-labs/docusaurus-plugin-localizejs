@@ -1,0 +1,16 @@
+{
+  "name": "hydrate-localize",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "Crawl the docusaurus site to trigger Localize phrase detection",
+  "dependencies": {
+    "crawlee": "^3.13.10",
+    "playwright": "^1.55.1"
+  }
+}

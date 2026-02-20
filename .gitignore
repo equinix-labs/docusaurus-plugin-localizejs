@@ -1,1 +1,2 @@
 .npmrc
+.github/actions/hydrate-localize/node_modules
