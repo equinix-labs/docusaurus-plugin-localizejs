@@ -1,0 +1,26 @@
+name: 'Hydrate Localize'
+description: 'Crawl a site with Chrome to trigger Localize phrase detection'
+inputs:
+  target_base_url:
+    description: 'Base URL of the docs site to crawl'
+    required: true
+  sitemap_path:
+    description: 'Path to the sitemap file relative to the base URL'
+    required: false
+    default: 'sitemap.xml'
+runs:
+  using: "composite"
+  steps:
+    - name: Install dependencies
+      run: cd ${{ github.action_path }} && npm ci
+      shell: bash
+
+    - name: Set up headless Chrome
+      run: cd ${{ github.action_path }} && npx playwright install --with-deps chromium
+      shell: bash
+
+    - name: Run crawler script
+      run: node ${{ github.action_path }}/index.js ${{ inputs.target_base_url }} ${{ inputs.sitemap_path }}
+      shell: bash
+      env:
+        CRAWLEE_MEMORY_MBYTES: 8000
